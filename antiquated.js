@@ -4,8 +4,8 @@ window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/li
 $(document).ready(function(){
   $('*').mouseover(function(e){
     e.css('border','1px solid blue');
-    var info = '';
-    info += e.attr('class'); 
-    e.prepend('<span>'+info+'</span>');
+    var cssinfo = '';
+    cssinfo = cssinfo + e.attr('class'); 
+    e.prepend('<span>'+cssinfo+'</span>');
   });
 });
