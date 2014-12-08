@@ -4,7 +4,8 @@ window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/li
 $(document).ready(function(){
   $('*').mouseover(function(e){
     e.css('border','1px solid blue');
-    var info += e.attr('class'); 
+    var info = '';
+    info += e.attr('class'); 
     e.prepend('<span>'+info+'</span>');
   });
 });
