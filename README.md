@@ -2,7 +2,7 @@
 ###Inspect CSS in older browsers
 
 ###What? Why?
-I do a lot of IE8 development. For some reason, there don't seem to be decent inspector tools out there (that I have found anyway). Because of this, I decided to create something that would help me day to day. If it helps you too, peachy. If not, peachless. Either way, I use this even in Chrome because it is faster to hold SHIFT than to right-click Inspect or remember the keyboard shortcut. Hopefully you are as lazy as I am. It is what makes a programmer good. Not wanting to do extra work when there is a computer to do it for us.
+I do a lot of IE8 development. For some reason, there don't seem to be decent inspector tools out there (that I have found anyway). Because of this and the continued prevalence of IE8/9 in the wild, I decided to create something that would help me day to day. If it helps you too, peachy. If not, peachless. Either way, I use this even in Chrome because it is faster to hold SHIFT than to right-click Inspect or remember the keyboard shortcut. Hopefully you are as lazy as I am. It is what makes a programmer good. Not wanting to do extra work when there is a computer to do it for us.
 
 ##Getting Started
 
@@ -25,6 +25,9 @@ Hold down SHIFT, and mouseover an element you want to inspect. You'll see the ve
 
 ##Changing that horrible color...
 Some people will not appreciate my insane love for #0094FF (cerulean blue). If so, you can go into the antiquated.js file and change the hex code if you like. No harm no foul. Don't expect the Smurfs to like you anymore.
+
+##Dev Environments
+You can and should edit the list of allowed environments at the top of the antiquated.js file, to match what you use for dev. Localhost and my preferred localdev.com are in there to begin with, but you can remove those and add your own at will.
 
 ##Improvements
 If I have overlooked something obvious, or should add something less obvious, and you think of it, by all means, let me know! You can email me at ryan at antiquated.in, or simply submit a pull request with your ideas. Thanks! 

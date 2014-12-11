@@ -4,14 +4,9 @@ window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/li
 $(document).ready(function(){
 
   /* Places to allow the inspector. Not recommended for production, but I can't stop you. #evilYou */
-  var allowed_env = ['localhost','localdev.com','he-web-staging.herokuapp.com']; 
+  var allowed_env = ['localhost','localdev.com']; 
   var atqcolor = '#0094FF'; // atq background color code
   
-  /* Crude but effective way to position the inspector */ 
-  var winh = $(window).outerHeight();
-  var half_winh = winh/2;
-
-
   if($.inArray(window.location.hostname,allowed_env)!=-1){
     $(document).on('mouseover',function(e){
       if(e.shiftKey==true){
@@ -100,7 +95,7 @@ $(document).ready(function(){
         $(target).addClass('atq_highlight');
         var atq = '';
         atq += '<div class="atq-close" style="float: right; cursor: pointer; font-weight: bold;" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
-        atq += '<h3 style="color: #FFF; margin-top: -10px; font-size: 16px;"><em>Antiquated CSS Inspector</em></h3>';
+        atq += '<h3 style="color: #FFF; margin-top: -10px; font-size: 16px;"><em>Antiquated Inspector</em></h3>';
         atq += '<table>';
         atq += '<tr><td style="width: 85px">parents: </td><td><b>'+elggparent+' '+elgparent+' '+elparent+'</b></td></tr>';
         atq += '<tr><td style="width: 85px">id/class: </td><td><b>'+elid+' '+elc+'</b></td></tr>';
@@ -125,21 +120,23 @@ $(document).ready(function(){
             atq += '<td style="padding-left: 20px">bg&nbsp;color: </td><td><span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; margin-left: 20px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></td>';
           atq += '</table></td></tr>';
           atq += '<tr><td style="width: 85px">bg&nbsp;image: </td><td><b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></td></tr>';
+          atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
         atq += '</table>';
-        /* Add the inspector to just before the target */ 
+        /* Add the inspector to the target */ 
         $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
+        var winh = $(window).outerHeight();
+        var half_winh = winh/2;
+        
         // if the target is huge, we just point to the top and stay on the interior for visibility
         if(elh > half_winh){
           $('#atq').css('top',eltop+40);
           $('#atq').css('left','45%');
-          $(target).css('background',atqcolor)
         }
 
         // flip to top of element, if below half way, so we can still see it for lower elements
         var atqh = $('#atq').height();
         if(eltop > half_winh){
-          console.log('flip now!');
           $('#atq').removeClass('top');
           $('#atq').css('top',eltop-atqh-40);
           $('#atq').css('margin-left',50);
