@@ -1,14 +1,11 @@
-// load jQuery if not already
-window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"><\/script>');
-
 $(document).ready(function(){
-
-  /* Places to allow the inspector. Not recommended for production, but I can't stop you. #evilYou */
-  var allowed_env = ['localhost','localdev.com']; 
-  var atqcolor = '#0094FF'; // atq background color code
+  // Allowed Environments. Not recommended for production, but I can't stop you. #evilYou
+  var allowed_env = ['localhost','localdev.com'];
+  // background color 
+  var atqcolor = '#0094FF'; 
   
   if($.inArray(window.location.hostname,allowed_env)!=-1){
-    $(document).on('mouseover',function(e){
+    $('*').mouseover(function(e){
       if(e.shiftKey==true){
         e.preventDefault();
         e.stopPropagation();
@@ -20,6 +17,7 @@ $(document).ready(function(){
         /* TARGET Acquired Captain. */ 
         var target = e.target || e.srcElement;
         var elt = $(target);
+        console.log(elt);
         
         /* Stalk the target a little */ 
         var eltag = $(target)[0].tagName;
@@ -72,6 +70,7 @@ $(document).ready(function(){
         var elclr = $(target).css('color').toUpperCase() || '';
         var elmargin = $(target).css('margin');
         var elpad = $(target).css('padding');
+        var elb = $(target).css('border');
         var ellh = $(target).css('line-height') || '';
         var ells = $(target).css('letter-spacing') || 0;
         
@@ -82,51 +81,64 @@ $(document).ready(function(){
         /* Now we actually build the inspector display, includes the */ 
         var styles = '';
         styles += '<style type="text/css" class="atq_styles">';
-          styles += ".atq_highlight{border: 2px solid "+atqcolor+";}";
-          styles += "table,tr,td{font-size: 12px; padding: 0px; line-height: 18px; vertical-align: top; border: 0px solid red;}";
-          styles += ".atq{font-family: sans-serif !important; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px;}";
-          styles += ".triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0;}";
-          styles += ".triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0;}";
-          styles += ".triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px;}";
-          styles += ".triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px;}";
+          styles += ".atq_highlight{border: 2px solid "+atqcolor+"}";
+          styles += "#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
+          styles += "#atq{font-family: sans-serif !important; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
+          styles += '#atq .atq_title{margin: 0px; padding: 0px; color: #FFF; margin-top: 10px; margin-bottom: 10px; font-size: 16px}';
+          styles += '#atq .atq-close{margin: 0px; padding: 0px; float: right; cursor: pointer; font-weight: bold}';
+          styles += ".atq.triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0}";
+          styles += ".atq.triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0}";
+          styles += ".atq.triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px}";
+          styles += "#atq.triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px}";
+          styles += "#atq.triangle-border.top-right:before {top:-20px; bottom:auto; left:auto; right:40px; border-width:0 20px 20px}";
+          styles += "#atq.triangle-border.top-right:after {top:-13px; bottom:auto; left:auto; right:47px; border-width:0 13px 13px}";
         styles += "</style>";
         $('.atq_styles').remove();
-        $('head').append(styles);
+        $('head').prepend(styles);
         $(target).addClass('atq_highlight');
         var atq = '';
-        atq += '<div class="atq-close" style="float: right; cursor: pointer; font-weight: bold;" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
-        atq += '<h3 style="color: #FFF; margin-top: -10px; font-size: 16px;"><em>Antiquated Inspector</em></h3>';
-        atq += '<table>';
-        atq += '<tr><td style="width: 85px">parents: </td><td><b>'+elggparent+' '+elgparent+' '+elparent+'</b></td></tr>';
+        atq += '<div class="atq-close" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
+        atq += '<h3 class="atq_title"><em>Antiquated Inspector</em></h3>';
+        atq += '<table width="100%">';
+        atq += '<tr><td style="width: 85px">parent: </td><td><b>'+elggparent+' '+elgparent+' '+elparent+'</b></td></tr>';
         atq += '<tr><td style="width: 85px">id/class: </td><td><b>'+elid+' '+elc+'</b></td></tr>';
         atq += '<tr><td style="width: 85px">tag/name: </td><td><b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></td></tr>';  
+        // divider
         atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table><tr><td>';
-        atq += '<table>';
+
+        /////////
+        atq += '<table width="100%">';
           atq += '<tr><td style="width: 93px">margin: </td><td style="width: 145px"><b>'+elmargin+'</b></td></tr>';
           atq += '<tr><td style="width: 93px">padding: </td><td style="width: 145px"><b>'+elpad+'</b><br /></td></tr>';
+          atq += '<tr><td style="width: 93px;">border: </td><td style="width: 145px"><b>'+rgb2hex(elb)+'</b></td></tr>';
           atq += '<tr><td style="width: 93px;">line-height: </td><td><b>'+parseInt(ellh,10)+'px</b></td></tr>';
           atq += '<tr><td style="width: 93px;">letter-spacing: </td><td><b>'+parseInt(ells,10)+'px</b></td></tr>';
         atq += '</table>';
         atq += '</td><td>';
-        atq += '<table>';
+        atq += '<table width="100%">';
         atq += '<tr><td style="width: 30px; padding-left: 10px;">width: </td><td style="padding-left: 10px;"><b>'+elw+'px</b><br /></td></tr>';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;">height: </td><td style="padding-left: 10px;"><b>'+elh+'px</b></td></tr>';
+        atq += '<tr><td style="width: 30px; padding-left: 10px;">height: </td><td style="padding-left: 10px;"><b></b></td></tr>';
+        atq += '<tr><td style="width: 30px; padding-left: 10px;"></td><td style="padding-left: 10px;"><b>'+elh+'px</b></td></tr>';
         atq += '<tr><td style="width: 30px; padding-left: 10px;">x: </td><td style="padding-left: 10px;"><b>'+parseInt(eltop,10)+'px</b></td></tr>';
         atq += '<tr><td style="width: 30px; padding-left: 10px;">y: </td><td style="padding-left: 10px;"><b>'+parseInt(elleft,10)+'px</b></td></tr>';
         atq += '</table>';
+        //////////
         atq += '</td></table></td></tr>';
-          atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table>';
+        // divider
+        atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table>';
             atq += '<tr><td style="width: 85px">color: </td><td><span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elclr).toUpperCase()+'</b></td>';
             atq += '<td style="padding-left: 20px">bg&nbsp;color: </td><td><span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; margin-left: 20px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></td>';
           atq += '</table></td></tr>';
           atq += '<tr><td style="width: 85px">bg&nbsp;image: </td><td><b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></td></tr>';
-          atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
+          atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
         atq += '</table>';
         /* Add the inspector to the target */ 
         $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
-        var winh = $(window).outerHeight();
+        var winh = $(window).height();
+        var winw = $(window).width();
         var half_winh = winh/2;
+        var half_winw = winw/2;
         
         // if the target is huge, we just point to the top and stay on the interior for visibility
         if(elh > half_winh){
@@ -141,17 +153,25 @@ $(document).ready(function(){
           $('#atq').css('top',eltop-atqh-40);
           $('#atq').css('margin-left',50);
         }
+        var atqw = $('#atq').width();
+        // flip to other side if too far to the right
+        if(elleft > half_winw){
+          console.log(elleft+' ? '+half_winw);
+          $('#atq').css('left',elleft-atqw);
+          
+        }
+
       }
     });
   }
 
-  $(document).on('keyup',function(e) {
+  $('*').keyup(function(e) {
     if (e.keyCode == 27) { 
       removeBorders();
     }   // esc key pressed
   });
 
-  $('#atq').on('blur',function(e) {
+  $('#atq').blur(function(e) {
     removeBorders();
   });
  
@@ -162,7 +182,7 @@ $(document).ready(function(){
 
   function rgb2hex(rgb){
     var old_color = rgb;
-    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+    rgb = rgb.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
     return (rgb && rgb.length === 4) ? "#" + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
   }
 });
