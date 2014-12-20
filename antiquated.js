@@ -17,7 +17,6 @@ $(document).ready(function(){
         /* TARGET Acquired Captain. */ 
         var target = e.target || e.srcElement;
         var elt = $(target);
-        console.log(elt);
         
         /* Stalk the target a little */ 
         var eltag = $(target)[0].tagName;
@@ -110,7 +109,7 @@ $(document).ready(function(){
         atq += '<table width="100%">';
           atq += '<tr><td style="width: 93px">margin: </td><td style="width: 145px"><b>'+elmargin+'</b></td></tr>';
           atq += '<tr><td style="width: 93px">padding: </td><td style="width: 145px"><b>'+elpad+'</b><br /></td></tr>';
-          atq += '<tr><td style="width: 93px;">border: </td><td style="width: 145px"><b>'+rgb2hex(elb)+'</b></td></tr>';
+          atq += '<tr><td style="width: 93px;">border: </td><td style="width: 145px"><b>'+sanitize(elb)+'</b></td></tr>';
           atq += '<tr><td style="width: 93px;">line-height: </td><td><b>'+parseInt(ellh,10)+'px</b></td></tr>';
           atq += '<tr><td style="width: 93px;">letter-spacing: </td><td><b>'+parseInt(ells,10)+'px</b></td></tr>';
         atq += '</table>';
@@ -126,8 +125,8 @@ $(document).ready(function(){
         atq += '</td></table></td></tr>';
         // divider
         atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table>';
-            atq += '<tr><td style="width: 85px">color: </td><td><span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elclr).toUpperCase()+'</b></td>';
-            atq += '<td style="padding-left: 20px">bg&nbsp;color: </td><td><span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; margin-left: 20px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></td>';
+            atq += '<tr><td style="width: 85px">color: </td><td><span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+sanitize(elclr).toUpperCase()+'</b></td>';
+            atq += '<td style="padding-left: 20px">bg&nbsp;color: </td><td><span style="background-color: '+sanitize(elbg)+' !important; margin-top: 2px; margin-left: 20px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+sanitize(elbg).toUpperCase()+'</b></td>';
           atq += '</table></td></tr>';
           atq += '<tr><td style="width: 85px">bg&nbsp;image: </td><td><b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></td></tr>';
           atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
@@ -178,6 +177,17 @@ $(document).ready(function(){
   function removeBorders(){
     $('.atq_highlight').removeClass('atq_highlight');
     $('#atq').remove();
+  }
+
+  function sanitize(santext){
+    if(santext.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)){
+      if(santext && santext.length === 4){
+        santext = "#" + ("0" + parseInt(santext[1],10).toString(16)).slice(-2) + ("0" + parseInt(santext[2],10).toString(16)).slice(-2) + ("0" + parseInt(santext[3],10).toString(16)).slice(-2)
+      }else{ 
+        santext = old_color;
+      }
+    }
+    return santext;
   }
 
   function rgb2hex(rgb){
