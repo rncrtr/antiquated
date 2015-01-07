@@ -49,88 +49,114 @@ $(document).ready(function(){
           elparent[i] = '.'+elparent[i];
         };
         elparent = elparent.join(' ');
+        ///
         var elgparent = $(target).parent().parent();
         elgparent = '#'+elgparent.attr('id') || '.' + elgparent.attr('class') || '';
         elgparent = elgparent.replace('#undefined','');
         elgparent = elgparent.replace('.undefined','');
+        ///
         var elggparent = $(target).parent().parent().parent();
         elggparent = '#'+elggparent.attr('id') || '.' + elggparent.attr('class') || ''; 
         elggparent = elggparent.replace('#undefined','');
         elggparent = elggparent.replace('.undefined',''); 
+        ///
         var elw = $(target)[0].offsetWidth;
+        ///
         var elh = $(target)[0].offsetHeight;
+        ///
         var elbgimg = $(target).css('background-image') || 'none';
         elbgimg = elbgimg.replace('url("http://','');
         elbgimg = elbgimg.replace('")','');
         elbgimg = elbgimg.replace('url(http://','');
         elbgimg = elbgimg.replace(')','');
         elbgimg = elbgimg.replace(window.location.host,'');
+        ///
         var elbg = $(target).css('background-color').toUpperCase() || 'none';
+        ///
         var elclr = $(target).css('color').toUpperCase() || '';
+        ///
         var elmargin = $(target).css('margin');
+        ///
         var elpad = $(target).css('padding');
-        var elb = $(target).css('border');
+        ///
+        var elbw = $(target).css('border-width');
+        ///
+        var elbs = $(target).css('border-style');
+        if(elbs=='none'){elbs = '';}
+        ///
+        var elbc = $(target).css('border-color');
+        if(elbw=='0px' || elbw==0){elbc = '';}
+        ///
         var ellh = $(target).css('line-height') || '';
+        ///
         var ells = $(target).css('letter-spacing') || 0;
-        
+        ///
         var eltop = $(target).offset().top;
+        ///
         var elleft = $(target).offset().left;
+        ///
         var elbot = eltop+elh+15;
         
-        /* Now we actually build the inspector display, includes the */ 
+        /* Now we actually build the inspector display */ 
+        // build styles
         var styles = '';
         styles += '<style type="text/css" class="atq_styles">';
           styles += ".atq_highlight{border: 2px solid "+atqcolor+"}";
-          styles += "#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
-          styles += "#atq{font-family: sans-serif !important; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
-          styles += '#atq .atq_title{margin: 0px; padding: 0px; color: #FFF; margin-top: 10px; margin-bottom: 10px; font-size: 16px}';
-          styles += '#atq .atq-close{margin: 0px; padding: 0px; float: right; cursor: pointer; font-weight: bold}';
-          styles += ".atq.triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0}";
-          styles += ".atq.triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0}";
-          styles += ".atq.triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px}";
-          styles += "#atq.triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px}";
-          styles += "#atq.triangle-border.top-right:before {top:-20px; bottom:auto; left:auto; right:40px; border-width:0 20px 20px}";
-          styles += "#atq.triangle-border.top-right:after {top:-13px; bottom:auto; left:auto; right:47px; border-width:0 13px 13px}";
+          /* tables */
+          styles += "div#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
+          /* container */
+          styles += "div#atq{font-family: sans-serif !important; font-size: 14px; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
+          /* title */
+          styles += 'div#atq .atq_title{margin-top: 0px; padding: 0px; color: #FFF; margin-top: 0px; margin-bottom: 10px; font-size: 16px}';
+          /* close */
+          styles += 'div#atq .atq-close{margin: 0px; padding: 0px; float: right; cursor: pointer; font-weight: bold}';
+          styles += 'div#atq span.atq_label{display: inline-block; width: 120px}';
+          /* callout */
+          styles += "div.atq.triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0}";
+          styles += "div.atq.triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0}";
+          styles += "div.atq.triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px}";
+          styles += "div#atq.triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px}";
+          styles += "div#atq.triangle-border.top-right:before {top:-20px; bottom:auto; left:auto; right:40px; border-width:0 20px 20px}";
+          styles += "div#atq.triangle-border.top-right:after {top:-13px; bottom:auto; left:auto; right:47px; border-width:0 13px 13px}";
         styles += "</style>";
         $('.atq_styles').remove();
-        $('head').prepend(styles);
+        $('head').append(styles);
+
+        // add highlight to element
         $(target).addClass('atq_highlight');
+
+        // build html
         var atq = '';
         atq += '<div class="atq-close" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
-        atq += '<h3 class="atq_title"><em>Antiquated Inspector</em></h3>';
-        atq += '<table width="100%">';
-        atq += '<tr><td style="width: 85px">parent: </td><td><b>'+elggparent+' '+elgparent+' '+elparent+'</b></td></tr>';
-        atq += '<tr><td style="width: 85px">id/class: </td><td><b>'+elid+' '+elc+'</b></td></tr>';
-        atq += '<tr><td style="width: 85px">tag/name: </td><td><b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></td></tr>';  
+        atq += '<div class="atq_title"><em>Antiquated Inspector</em></div>';
+        atq += '';
+        atq += '<div><span class="atq_label">parent:</span> <b>'+elggparent+' '+elgparent+' '+elparent+'</b></div>';
+        atq += '<div><span class="atq_label">id/class:</span> <b>'+elid+' '+elc+'</b>';
+        atq += '<div><span class="atq_label">tag/name:</span> <b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></div>';  
+    
+          /* margin */
+          atq += '<div><span class="atq_label">margin:</span> <b>'+elmargin+'</b></div>';
+          /* padding */
+          atq += '<div><span class="atq_label">padding:</span> <b>'+elpad+'</b></div>';
+          /* border */
+          atq += '<div><span class="atq_label">border:</span> <b>'+elbw+' '+elbs+' <span style="background: '+rgb2hex(elbc)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;'+rgb2hex(elbc)+'</b></div>';
+          /* line height */
+          atq += '<div><span class="atq_label">line-height:</span> <b>'+parseInt(ellh,10)+'px</b></div>';
+          /* letter spacing */
+          atq += '<div><span class="atq_label">letter-spacing:</span> <b>'+parseInt(ells,10)+'px</b></div>';
+        atq += '<div><span class="atq_label">width:</span> <b>'+elw+'px</b></div>';
+        atq += '<div><span class="atq_label">height:</span> <b>'+elh+'px</b></div>';
+        atq += '<div><span class="atq_label">x:</span> <b>'+parseInt(eltop,10)+'px</b></div>';
+        atq += '<div><span class="atq_label">y:</span> <b>'+parseInt(elleft,10)+'px</b></div>';
         // divider
-        atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table><tr><td>';
-
-        /////////
-        atq += '<table width="100%">';
-          atq += '<tr><td style="width: 93px">margin: </td><td style="width: 145px"><b>'+elmargin+'</b></td></tr>';
-          atq += '<tr><td style="width: 93px">padding: </td><td style="width: 145px"><b>'+elpad+'</b><br /></td></tr>';
-          atq += '<tr><td style="width: 93px;">border: </td><td style="width: 145px"><b>'+sanitize(elb)+'</b></td></tr>';
-          atq += '<tr><td style="width: 93px;">line-height: </td><td><b>'+parseInt(ellh,10)+'px</b></td></tr>';
-          atq += '<tr><td style="width: 93px;">letter-spacing: </td><td><b>'+parseInt(ells,10)+'px</b></td></tr>';
-        atq += '</table>';
-        atq += '</td><td>';
-        atq += '<table width="100%">';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;">width: </td><td style="padding-left: 10px;"><b>'+elw+'px</b><br /></td></tr>';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;">height: </td><td style="padding-left: 10px;"><b></b></td></tr>';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;"></td><td style="padding-left: 10px;"><b>'+elh+'px</b></td></tr>';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;">x: </td><td style="padding-left: 10px;"><b>'+parseInt(eltop,10)+'px</b></td></tr>';
-        atq += '<tr><td style="width: 30px; padding-left: 10px;">y: </td><td style="padding-left: 10px;"><b>'+parseInt(elleft,10)+'px</b></td></tr>';
-        atq += '</table>';
-        //////////
-        atq += '</td></table></td></tr>';
-        // divider
-        atq += '<tr><td colspan="2"><div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div><table>';
-            atq += '<tr><td style="width: 85px">color: </td><td><span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+sanitize(elclr).toUpperCase()+'</b></td>';
-            atq += '<td style="padding-left: 20px">bg&nbsp;color: </td><td><span style="background-color: '+sanitize(elbg)+' !important; margin-top: 2px; margin-left: 20px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+sanitize(elbg).toUpperCase()+'</b></td>';
-          atq += '</table></td></tr>';
-          atq += '<tr><td style="width: 85px">bg&nbsp;image: </td><td><b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></td></tr>';
-          atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
-        atq += '</table>';
+        atq += '<div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div>';
+            /* color */
+            atq += '<div><span class="atq_label">color:</span> <span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elclr).toUpperCase()+'</b></div>';
+            /* background color */
+            atq += '<div><span class="atq_label">bg&nbsp;color: </span>';
+            atq += '<span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></div>';
+          atq += '<div><span class="atq_label">bg&nbsp;image:</span> <b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></div>';
+          atq += '<a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></div>';
         /* Add the inspector to the target */ 
         $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
@@ -179,20 +205,11 @@ $(document).ready(function(){
     $('#atq').remove();
   }
 
-  function sanitize(santext){
-    if(santext.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i)){
-      if(santext && santext.length === 4){
-        santext = "#" + ("0" + parseInt(santext[1],10).toString(16)).slice(-2) + ("0" + parseInt(santext[2],10).toString(16)).slice(-2) + ("0" + parseInt(santext[3],10).toString(16)).slice(-2)
-      }else{ 
-        santext = old_color;
-      }
-    }
-    return santext;
-  }
-
   function rgb2hex(rgb){
-    var old_color = rgb;
-    rgb = rgb.match(/^rgb?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    return (rgb && rgb.length === 4) ? "#" + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
+   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+   return (rgb && rgb.length === 4) ? "#" +
+    ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
+    ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
+    ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
   }
 });
