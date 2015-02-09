@@ -1,12 +1,14 @@
 $(document).ready(function(){
-  // Allowed Environments. Not recommended for production, but I can't stop you. #evilYou
-  var allowed_env = ['localhost','localdev.com'];
-  // background color 
-  var atqcolor = '#0094FF'; 
-  
+  // Allowed Environments. Not recommended for production b/c guests will be able to trigger it, but I can't stop you. #evilYou
+  var allowed_env = ['localhost','localdev.com']; // don't include the port here
+  // background color
+  var atqcolor = '#0094FF';
+
+
   if($.inArray(window.location.hostname,allowed_env)!=-1){
     $('*').mouseover(function(e){
-      if(e.shiftKey==true){
+      // you can change the trigger key in the next line to: e.shiftKey, e.ctrlKey, or e.altKey
+      if(e.ctrlKey==true){
         e.preventDefault();
         e.stopPropagation();
 
@@ -14,11 +16,11 @@ $(document).ready(function(){
         $('.atq_highlight').removeClass('atq_highlight');
         $('#atq').remove();
 
-        /* TARGET Acquired Captain. */ 
+        /* TARGET Acquired Captain. */
         var target = e.target || e.srcElement;
         var elt = $(target);
-        
-        /* Stalk the target a little */ 
+
+        /* Stalk the target a little */
         var eltag = $(target)[0].tagName;
         var elid = ($(target)[0].id) || '';
         if(elid!=''){elid = '#'+elid;}
@@ -41,7 +43,7 @@ $(document).ready(function(){
         elc = elc.join(' ');
         var eln = $(target)[0].name || '';
 
-        /* Stalk the target's family tree */ 
+        /* Stalk the target's family tree */
         var elparent = $(target).parent();
         elparent = elparent.attr('id') || '' + elparent.attr('class') || '';
         elparent = elparent.split(' ');
@@ -56,9 +58,9 @@ $(document).ready(function(){
         elgparent = elgparent.replace('.undefined','');
         ///
         var elggparent = $(target).parent().parent().parent();
-        elggparent = '#'+elggparent.attr('id') || '.' + elggparent.attr('class') || ''; 
+        elggparent = '#'+elggparent.attr('id') || '.' + elggparent.attr('class') || '';
         elggparent = elggparent.replace('#undefined','');
-        elggparent = elggparent.replace('.undefined',''); 
+        elggparent = elggparent.replace('.undefined','');
         ///
         var elw = $(target)[0].offsetWidth;
         ///
@@ -96,8 +98,8 @@ $(document).ready(function(){
         var elleft = $(target).offset().left;
         ///
         var elbot = eltop+elh+15;
-        
-        /* Now we actually build the inspector display */ 
+
+        /* Now we actually build the inspector display */
         // build styles
         var styles = '';
         styles += '<style type="text/css" class="atq_styles">';
@@ -132,8 +134,8 @@ $(document).ready(function(){
         atq += '';
         atq += '<div><span class="atq_label">parent:</span> <b>'+elggparent+' '+elgparent+' '+elparent+'</b></div>';
         atq += '<div><span class="atq_label">id/class:</span> <b>'+elid+' '+elc+'</b>';
-        atq += '<div><span class="atq_label">tag/name:</span> <b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></div>';  
-    
+        atq += '<div><span class="atq_label">tag/name:</span> <b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></div>';
+
           /* margin */
           atq += '<div><span class="atq_label">margin:</span> <b>'+elmargin+'</b></div>';
           /* padding */
@@ -157,14 +159,14 @@ $(document).ready(function(){
             atq += '<span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></div>';
           atq += '<div><span class="atq_label">bg&nbsp;image:</span> <b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></div>';
           atq += '<a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></div>';
-        /* Add the inspector to the target */ 
+        /* Add the inspector to the target */
         $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
         var winh = $(window).height();
         var winw = $(window).width();
         var half_winh = winh/2;
         var half_winw = winw/2;
-        
+
         // if the target is huge, we just point to the top and stay on the interior for visibility
         if(elh > half_winh){
           $('#atq').css('top',eltop+40);
@@ -183,7 +185,7 @@ $(document).ready(function(){
         if(elleft > half_winw){
           console.log(elleft+' ? '+half_winw);
           $('#atq').css('left',elleft-atqw);
-          
+
         }
 
       }
@@ -191,7 +193,7 @@ $(document).ready(function(){
   }
 
   $('*').keyup(function(e) {
-    if (e.keyCode == 27) { 
+    if (e.keyCode == 27) {
       removeBorders();
     }   // esc key pressed
   });
@@ -199,7 +201,7 @@ $(document).ready(function(){
   $('#atq').blur(function(e) {
     removeBorders();
   });
- 
+
   function removeBorders(){
     $('.atq_highlight').removeClass('atq_highlight');
     $('#atq').remove();
