@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Antiquated Inspector</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="antiquated.js"></script>
+    </head>
+    <body>
+        <h1>Page Title</h1>
+        <p>Lorem loved ipsum.</p>
+        <input type="text" /><br />
+        <textarea name="" id="" cols="30" rows="10"></textarea><br />
+        <ul>
+            <li>Item 1</li>
+            <li><em>Item 2</em></li>
+        </ul>
+        <!-- Antiquated inspector include code -->
+        <script>
+            (function(doc, script) {
+              var js, 
+                  fjs = doc.getElementsByTagName(script)[0],
+                  frag = doc.createDocumentFragment(),
+                  add = function(url, id) {
+                      if (doc.getElementById(id)) {return;}
+                      js = doc.createElement(script);
+                      js.src = url;
+                      id && (js.id = id);
+                      frag.appendChild( js );
+                  };
+                  
+                // load antiquated script
+                add('https://raw.githubusercontent.com/rncrtr/antiquated/master/antiquated.js');
+
+                fjs.parentNode.insertBefore(frag, fjs);
+            }(document, 'script'));
+        </script>
+        <!-- /Antiquated inspector include code -->
+    </body>
+</html>

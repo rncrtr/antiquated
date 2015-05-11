@@ -1,13 +1,54 @@
-// load jQuery if not already
-window.jQuery || document.write('<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"><\/script>');
+var atqcolor = '#0094FF'; // atq background color code
 
-$(document).ready(function(){
+// Only do anything if jQuery isn't defined
+if (typeof jQuery == 'undefined') {
+  function getScript(url, success) {
+    var script = document.createElement('script');
+    script.src = url;
+    var head = document.getElementsByTagName('head')[0],
+    done = false;
+    // Attach handlers for all browsers
+    script.onload = script.onreadystatechange = function() {
+      if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+      done = true;
+        // callback function provided as param
+        success();
+        script.onload = script.onreadystatechange = null;
+        head.removeChild(script);
+      };
+    };
+    head.appendChild(script);
+  };
+  getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', function() {
+    if (typeof jQuery=='undefined') {
+      // Super failsafe - still somehow failed...
+    } else {
+      // jQuery loaded! Make sure to use .noConflict just in case
+      $.noConflict();
+      jQuery( document ).ready(function( $ ) {
+        atq($);
+      });
+    }
+  });
+} else { // jQuery was already loaded
+  // Run your jQuery Code
+  $.noConflict();
+  jQuery( document ).ready(function( $ ) {
+    atq($);
+  });
+};
+function removeBorders(){
+  $('.atq_highlight').removeClass('atq_highlight');
+  $('#atq').hide();
+}
 
-  /* Places to allow the inspector. Not recommended for production, but I can't stop you. #evilYou */
-  var allowed_env = ['localhost','localdev.com']; 
-  var atqcolor = '#0094FF'; // atq background color code
-  
-  if($.inArray(window.location.hostname,allowed_env)!=-1){
+function rgb2hex(rgb){
+  var old_color = rgb;
+  rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
+  return (rgb && rgb.length === 4) ? "#" + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
+}
+
+function atq($){
     $(document).on('mouseover',function(e){
       if(e.shiftKey==true){
         e.preventDefault();
@@ -94,8 +135,8 @@ $(document).ready(function(){
         $('head').append(styles);
         $(target).addClass('atq_highlight');
         var atq = '';
-        atq += '<div class="atq-close" style="float: right; cursor: pointer; font-weight: bold;" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
-        atq += '<h3 style="color: #FFF; margin-top: -10px; font-size: 16px;"><em>Antiquated Inspector</em></h3>';
+        atq += '<div class="atq-close" style="float: right; cursor: pointer; font-weight: bold;" onclick="">X</div>';
+        atq += '<h3 style="color: #FFF; margin-top: 0px; font-size: 16px;"><em>Antiquated Inspector</em></h3>';
         atq += '<table>';
         atq += '<tr><td style="width: 85px">parents: </td><td><b>'+elggparent+' '+elgparent+' '+elparent+'</b></td></tr>';
         atq += '<tr><td style="width: 85px">id/class: </td><td><b>'+elid+' '+elc+'</b></td></tr>';
@@ -123,7 +164,7 @@ $(document).ready(function(){
           atq += '<tr><td colspan="2" style="text-align: right;"><a style="color: #FFF" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></td></tr>';
         atq += '</table>';
         /* Add the inspector to the target */ 
-        $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
+        $(target).parent().prepend('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
         var winh = $(window).outerHeight();
         var half_winh = winh/2;
@@ -143,7 +184,7 @@ $(document).ready(function(){
         }
       }
     });
-  }
+  
 
   $(document).on('keyup',function(e) {
     if (e.keyCode == 27) { 
@@ -154,15 +195,4 @@ $(document).ready(function(){
   $('#atq').on('blur',function(e) {
     removeBorders();
   });
- 
-  function removeBorders(){
-    $('.atq_highlight').removeClass('atq_highlight');
-    $('#atq').remove();
-  }
-
-  function rgb2hex(rgb){
-    var old_color = rgb;
-    rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-    return (rgb && rgb.length === 4) ? "#" + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
-  }
-});
+};

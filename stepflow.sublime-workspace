@@ -1,0 +1,661 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"speaker",
+				"speakerPresentations"
+			],
+			[
+				"fn",
+				"function"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"id",
+				"story_id"
+			],
+			[
+				"p",
+				"plots"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"text-tr",
+				"text-decoration"
+			],
+			[
+				"di",
+				"div"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"post",
+				"post-detail"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"ch",
+				"channel"
+			],
+			[
+				"sip",
+				"snippet"
+			],
+			[
+				"i",
+				"item"
+			],
+			[
+				"sl",
+				"slideDown"
+			],
+			[
+				"watch",
+				"watchedVideos"
+			],
+			[
+				"getMy",
+				"getMyWatchedVideos"
+			],
+			[
+				"re",
+				"relatedPlaylists"
+			],
+			[
+				"content",
+				"contentDetails"
+			],
+			[
+				"goo",
+				"googleApiClientReady"
+			],
+			[
+				"happy",
+				"happySubAccessToken"
+			],
+			[
+				"play",
+				"playlistItems"
+			],
+			[
+				"reque",
+				"requestVideos"
+			],
+			[
+				"conten",
+				"contentDetails"
+			],
+			[
+				"channel",
+				"channel_pl_videos"
+			],
+			[
+				"channel_",
+				"channel_titles"
+			],
+			[
+				"oauth",
+				"oauth_url"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"res",
+				"res"
+			],
+			[
+				"todo",
+				"todo"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"name",
+				"namespace"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"b",
+				"background"
+			],
+			[
+				"triange",
+				"triangle-border"
+			],
+			[
+				"yoink-tag",
+				"yoink-tag-box"
+			],
+			[
+				"get",
+				"getSelected"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 93.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"packe",
+				"Package Control: Install Package"
+			],
+			[
+				"colo",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 507.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ryvan/projects/stepflow"
+	],
+	"file_history":
+	[
+		"/Users/ryvan/projects/antiquated/antiquated.js",
+		"/Users/ryvan/projects/atmail/src/main/docroot/application/modules/mail/views/scripts/mail/templates/envelope/envelope-body-normal.php",
+		"/Users/ryvan/projects/atmail/src/main/docroot/application/modules/mail/views/scripts/mail/templates/compose-pane-template.php",
+		"/Users/ryvan/projects/atmail/src/main/docroot/application/modules/mail/views/scripts/mail/css/charter-ui.css",
+		"/Users/ryvan/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ryvan/projects/atmail/src/main/docroot/application/modules/mail/views/scripts/mail/js/backbone/views/compose.js",
+		"/Users/ryvan/projects/atmail/dist/docroot/application/modules/mail/views/scripts/mail/css/charter-ui.css",
+		"/Users/ryvan/projects/atmail/dist/docroot/application/modules/mail/views/scripts/mail/js/backbone/views/compose.js",
+		"/Users/ryvan/Downloads/index (1).php",
+		"/Users/ryvan/projects/atmail/dist/docroot/index.php",
+		"/Users/ryvan/projects/atmail/dist/docroot/bootloader.php",
+		"/Users/ryvan/projects/atmail/dist/docroot/library/Atmail/Session/SaveHandler/DbUserSession.php",
+		"/Users/ryvan/projects/bra-edge/UI/src/components/login/login-controller.coffee",
+		"/Users/ryvan/projects/bra-edge/UI/gulpfile.js",
+		"/Users/ryvan/projects/bra-edge/UI/package.json",
+		"/Users/ryvan/projects/bra-edge/README.md",
+		"/Users/ryvan/projects/atmail/dist/docroot/config/dbconfig.ini",
+		"/Users/ryvan/projects/atmail/conf-local/http.conf",
+		"/Users/ryvan/projects/atmail/error.log",
+		"/Users/ryvan/projects/atmail/conf-local/nginx.conf",
+		"/Users/ryvan/projects/atmail/dist/docroot/log/debug.log",
+		"/Users/ryvan/projects/atmail/dist/docroot/log/error.log",
+		"/Users/ryvan/Downloads/dev_dump.sql",
+		"/Users/ryvan/projects/atmail/conf-local/root-dir.conf",
+		"/Users/ryvan/projects/atmail/conf-local/logfiles.conf",
+		"/Users/ryvan/Dropbox/ryan/wow addons/Auctionator/Auctionator.lua",
+		"/private/var/folders/fb/518nlbx931b_nfjn7ghl149c0000r9/T/fz3temp-1/index.html",
+		"/private/var/folders/fb/518nlbx931b_nfjn7ghl149c0000r9/T/fz3temp-1/jquery.tagsinput.js",
+		"/private/var/folders/fb/518nlbx931b_nfjn7ghl149c0000r9/T/fz3temp-1/jquery.tagsinput.css",
+		"/Users/ryvan/projects/stepflow/stepflow.css",
+		"/Users/ryvan/projects/stepflow/server.js",
+		"/Users/ryvan/projects/stepflow/assets/css/pure-min.css",
+		"/Users/ryvan/projects/stepflow/jquery-2.1.3.min.js",
+		"/Users/ryvan/Downloads/jquery-2.1.3.min.js",
+		"/Users/ryvan/Desktop/PlayTheThing focus keywords.txt",
+		"/Users/ryvan/Desktop/playthething_format_for_import.txt",
+		"/private/var/folders/fb/518nlbx931b_nfjn7ghl149c0000r9/T/fz3temp-1/youtool.html",
+		"/Users/ryvan/projects/overthink_test/index.html",
+		"/Users/ryvan/Downloads/content.php",
+		"/Users/ryvan/Desktop/Udemy Course Ideas",
+		"/Users/ryvan/Desktop/Overthink Course Ideas.txt",
+		"/Volumes/Git 2.2.1 Mavericks Intel Universal/uninstall.sh",
+		"/Users/ryvan/projects/plotlets-ember/rails/app/serializers/plot_serializer.rb",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/router.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/index.html",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/application.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/models/card.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/models/scene.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/models/plot.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/routes/scenes/index.js",
+		"/Users/ryvan/projects/plotlets-ember/rails/db/seeds.rb",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/plots/index.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/plots/show.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/scenes/index.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/scenes/show.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/cards/index.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/cards/show.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/models/story.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/routes/stories/index.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/routes/cards/index.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/routes/plots/index.js",
+		"/Users/ryvan/projects/plotlets-ember/rails/db/schema.rb",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/stories/show.hbs",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/templates/stories/index.hbs",
+		"/Users/ryvan/projects/plotlets-ember/rails/app/controllers/api/stories_controller.rb",
+		"/Users/ryvan/projects/plotlets-ember/rails/config/routes.rb",
+		"/Users/ryvan/projects/plotlets-ember/rails/app/serializers/story_serializer.rb",
+		"/Users/ryvan/projects/plotlets-ember/ember/Brocfile.js",
+		"/Users/ryvan/projects/plotlets-ember/ember/app/adapters/application.js",
+		"/Users/ryvan/projects/plotlets-ember/rails/Gemfile",
+		"/Users/ryvan/projects/clscco-pencilblue/config.json",
+		"/Users/ryvan/projects/clscco-pencilblue/config.js",
+		"/Users/ryvan/projects/polymer/index.html",
+		"/Users/ryvan/projects/polymer/bower_components/polymer/polymer.html",
+		"/Users/ryvan/projects/bostonember/ember/app/templates/speakers.hbs",
+		"/Users/ryvan/projects/bostonember/ember/tests/integration/speakers-page-test.js",
+		"/Users/ryvan/projects/bostonember/ember/.jshintrc",
+		"/Users/ryvan/projects/bostonember/ember/package.json",
+		"/Users/ryvan/projects/bostonember/ember/tests/integration/about-page-test.js",
+		"/Users/ryvan/projects/bostonember/rails/test/integration/landing-page-test.js",
+		"/Users/ryvan/projects/bostonember/ember/tests/integration/landing-page-test.js",
+		"/Users/ryvan/projects/bostonember/ember/app/adapters/application.js",
+		"/Users/ryvan/projects/bostonember/rails/Gemfile",
+		"/Users/ryvan/projects/bostonember/ember/tests/helpers/start-app.js",
+		"/Users/ryvan/projects/bostonember/ember/tests/.jshintrc",
+		"/Users/ryvan/projects/bostonember/ember/app/templates/about.hbs",
+		"/Users/ryvan/projects/plotlets-node/server.js",
+		"/Users/ryvan/projects/plotlets-node/package.json",
+		"/Users/ryvan/projects/mean.io/packages/system/public/views/index.html",
+		"/Users/ryvan/projects/clscco-mean/config/env/development.js",
+		"/Users/ryvan/projects/mean.io/config/env/development.js",
+		"/Users/ryvan/projects/mean.io/config/env/all.js",
+		"/Users/ryvan/projects/plotlets-node/public/assets/js/app.js",
+		"/Users/ryvan/projects/antiquated/README.md",
+		"/Users/ryvan/projects/plotlets-node/server/models/card.js",
+		"/Users/ryvan/projects/ember-1.8.1/index.html",
+		"/Users/ryvan/projects/plotlets-node/public/assets/css/plotlets.css",
+		"/Users/ryvan/projects/plotlets-node/public/assets/css/ryapi.css",
+		"/Users/ryvan/projects/nodember/gruntfile.js",
+		"/Users/ryvan/projects/mean/README.md",
+		"/Users/ryvan/projects/_html/elerate/index.html",
+		"/Users/ryvan/Downloads/nakasi-ktu84p/flash-all-mac.sh",
+		"/Users/ryvan/Downloads/nakasi-ktu84p/flash-all.bat",
+		"/Users/ryvan/projects/embercs/js/app.js",
+		"/Users/ryvan/projects/embercs/index.html",
+		"/Users/ryvan/projects/embercs/bower_components/jquery/dist/jquery.min.js",
+		"/Users/ryvan/projects/embercs/bower.json",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/assets/javascripts/application.js",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/views/pages/_story.html.erb",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/views/pages/stories/show.html.erb",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/views/pages/_stories.html.erb",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/assets/stylesheets/application.css",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/app/views/layouts/application.html.erb",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/bower.json",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/Gemfile",
+		"/Users/ryvan/Nitrous/plotlets/plotlets/.bowerrc",
+		"/Users/ryvan/projects/ryapi/server.js",
+		"/Users/ryvan/projects/mean.io/packages/custom/pinkninja/public/views/index.html",
+		"/Users/ryvan/projects/mean.io/packages/custom/pinkninja/app.js",
+		"/Users/ryvan/projects/mean.io/packages/system/server/routes/menus.js",
+		"/Users/ryvan/projects/mean.io/packages/system/server/routes/index.js",
+		"/Users/ryvan/projects/mean.io/server.js",
+		"/Users/ryvan/projects/mean.io/config/express.js",
+		"/Users/ryvan/projects/mean.io/config/assets.json",
+		"/Users/ryvan/projects/mean.io/config/env/production.js",
+		"/Users/ryvan/projects/mean.io/packages/system/app.js",
+		"/Users/ryvan/projects/copycake-html/server.js",
+		"/Users/ryvan/projects/subplot-rails/config/database.yml"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/ryvan/projects/atmail/src/main/docroot/",
+			"/Users/ryvan/projects/atmail/src/main/",
+			"/Users/ryvan/projects/atmail",
+			"/Users/ryvan/projects/atmail/dist/docroot",
+			"<open files>",
+			"",
+			"scenes_controller.rb",
+			"scenecontroller.js",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"formatBar",
+			"envelope-email-attachments",
+			"attachments",
+			"envelope-email-body-edit",
+			"envelope-format-bar",
+			".envelope",
+			"envelope",
+			"envelope-format-bar",
+			"attachment-dialog",
+			"border: 1px solid blue;",
+			"calculateBody",
+			"Memcached",
+			".in",
+			",",
+			"[citation needed]",
+			"[edit]",
+			"L-",
+			"[edit]",
+			"[citation needed]",
+			"9",
+			"]",
+			"[",
+			"cat",
+			">",
+			"\"> ",
+			"\">",
+			"</a>",
+			" <a href=\"/RTQ/rss20.aspx?rssid=RSS_PD&num=25&geoip=false&ddcompany=false&ddtitle=false&",
+			"<a href",
+			"Jobs in ",
+			"<a target=new href=/RTQ/rss20.aspx?rssid=RSS_PD&num=25&geoip=false&ddcompany=false&ddtitle=false&",
+			"Jobs",
+			"<img src=\"http://img.icbdr.com/images/icons/xml.gif\" hspace=\"0\" vspace=\"0\" border=\"0\" alt=\"\" align=\"absMiddle\">",
+			"a href",
+			"<img height=\"2\" width=\"4\" src=\"http://img.icbdr.com/images/pixel.gif\">",
+			"<td colspan=\"5\">",
+			"<tr> ",
+			"</tr>",
+			"<td width=\"40\" valign=\"middle\">",
+			" <td class=\"BodyText\" width=\"277\">",
+			"<img height=\"1\" width=\"2\" src=\"http://img.icbdr.com/images/pixel.gif\"> ",
+			"<td width=\"2\">",
+			"</td>",
+			"<td class=\"BodyText\" width=\"180\">",
+			"<tr valign=\"top\">",
+			"\n",
+			"7",
+			"6",
+			"9",
+			"4",
+			"5",
+			":",
+			"8",
+			"2",
+			"1",
+			"0",
+			"3",
+			"	",
+			"live/",
+			"embeddable",
+			"http://",
+			"</option>",
+			"<option class=\"BDropDownOption\" value=\"",
+			"<option",
+			"x",
+			"	",
+			"yourwebsite.com",
+			"\n",
+			">",
+			"</option>",
+			">",
+			"Basically",
+			"basically",
+			"ba",
+			"[+] ",
+			"plotlets-ember.js",
+			"plots",
+			"Plot",
+			"block",
+			"Block",
+			"block",
+			"ryapi",
+			"padding-top",
+			".ml",
+			".mb",
+			".mr",
+			"border-bottom",
+			"border",
+			"1px",
+			".mt",
+			".t",
+			"width",
+			"plot",
+			"Plot",
+			"scene",
+			"Scene",
+			"Plot",
+			"plot",
+			"Plot",
+			"plot",
+			"Plot",
+			"rb",
+			"get_the_excerpt",
+			"class=\"plot-cell\"",
+			";}",
+			"../fonts",
+			"class=\"col\"",
+			"/wfcweb",
+			"_nav",
+			"para",
+			"answer",
+			"featured",
+			"			",
+			"flag",
+			"Paper",
+			"whitepaper",
+			"button",
+			"%;}",
+			"large-",
+			"fa-circle-o",
+			"filter-item\"",
+			"filter-item",
+			"main",
+			"\">",
+			"post ",
+			"600",
+			"});\n",
+			"handleAuthResult"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"card",
+			"Card",
+			"Group",
+			"group",
+			"guppy",
+			"scene",
+			"Scene"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "stepflow.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"charter-ui",
+				"dist/docroot/application/modules/mail/views/scripts/mail/css/charter-ui.css"
+			],
+			[
+				"compose.js",
+				"dist/docroot/application/modules/mail/views/scripts/mail/js/backbone/views/compose.js"
+			],
+			[
+				"plot",
+				"app/assets/javascripts/angular-app/controllers/plotcontroller.js"
+			],
+			[
+				"app",
+				"subplot-rails/app/assets/javascripts/application.js"
+			],
+			[
+				"core",
+				"public/core.js"
+			],
+			[
+				"inde",
+				"public/index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/projects/_sublime-projects/ryapi.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
