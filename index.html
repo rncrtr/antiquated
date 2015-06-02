@@ -16,6 +16,7 @@
             <li>Item 1</li>
             <li><em>Item 2</em></li>
         </ul>
+        <a href="http://google.com">Google Link</a>
         <!-- Antiquated inspector include code -->
         <script>
             (function(doc, script) {
@@ -31,9 +32,9 @@
                   };
                   
                 // load antiquated script
-                add('https://raw.githubusercontent.com/rncrtr/antiquated/master/antiquated.js');
+                add('antiquated.js');
 
-                fjs.parentNode.insertBefore(frag, fjs);
+                fjs.insertBefore(frag, fjs.firstChild);
             }(document, 'script'));
         </script>
         <!-- /Antiquated inspector include code -->

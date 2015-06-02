@@ -1,6 +1,6 @@
 var atqcolor = '#0094FF'; // atq background color code
 
-// Only do anything if jQuery isn't defined
+// Only do something if jQuery isn't defined
 if (typeof jQuery == 'undefined') {
   function getScript(url, success) {
     var script = document.createElement('script');
@@ -37,20 +37,25 @@ if (typeof jQuery == 'undefined') {
     atq($);
   });
 };
-function removeBorders(){
-  $('.atq_highlight').removeClass('atq_highlight');
-  $('#atq').hide();
-}
-
 function rgb2hex(rgb){
   var old_color = rgb;
   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-  return (rgb && rgb.length === 4) ? "#" + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
+  return (rgb && rgb.length === 4) ? "#" 
+    + ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) + ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : old_color;
 }
 
+var hexToRgb = function(hex) {
+        var bigint = parseInt(hex, 16);
+        var r = (bigint >> 16) & 255;
+        var g = (bigint >> 8) & 255;
+        var b = bigint & 255;
+    
+        return r + "," + g + "," + b;
+    }
 function atq($){
     $(document).on('mouseover',function(e){
-      if(e.shiftKey==true){
+      // ctrl or metakey (command on mac)
+      if(e.ctrlKey===true || e.metaKey===true){
         e.preventDefault();
         e.stopPropagation();
 
@@ -60,10 +65,11 @@ function atq($){
 
         /* TARGET Acquired Captain. */
         var target = e.target || e.srcElement;
-        var elt = $(target);
-
+        var elt = $(target)[0];
+       console.log($(target));
+        
         /* Stalk the target a little */
-        var eltag = $(target)[0].tagName;
+        var eltag = elt.tagName;
         var elid = ($(target)[0].id) || '';
         if(elid!=''){elid = '#'+elid;}
         var elc = $(target).attr('class') || '';
@@ -143,35 +149,45 @@ function atq($){
 
         /* Now we actually build the inspector display */
         // build styles
-        var styles = '';
-        styles += '<style type="text/css" class="atq_styles">';
-          styles += ".atq_highlight{border: 2px solid "+atqcolor+"}";
+        var atq_styles = '';
+        atq_styles += '<style type="text/css" class="atq_styles">';
+          atq_styles += '.atq_highlight{background: rgba('+hexToRgb(atqcolor.substring(1))+',0.2); -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)"; filter: alpha(opacity=20);}';
           /* tables */
-          styles += "div#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
+          atq_styles += "div#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
           /* container */
-          styles += "div#atq{font-family: sans-serif !important; font-size: 14px; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
+          atq_styles += "div#atq{font-family: sans-serif !important; font-size: 14px; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
           /* title */
-          styles += 'div#atq .atq_title{margin-top: 0px; padding: 0px; color: #FFF; margin-top: 0px; margin-bottom: 10px; font-size: 16px}';
+          atq_styles += 'div#atq .atq_title{margin-top: 0px; padding: 0px; color: #FFF; margin-top: 0px; margin-bottom: 10px; font-size: 16px}';
           /* close */
-          styles += 'div#atq .atq-close{margin: 0px; padding: 0px; float: right; cursor: pointer; font-weight: bold}';
-          styles += 'div#atq span.atq_label{display: inline-block; width: 120px}';
+          atq_styles += 'div#atq .atq-close{margin: 0px; padding: 0px; float: right; cursor: pointer; font-weight: bold}';
+          atq_styles += 'div#atq span.atq_label{display: inline-block; width: 120px}';
           /* callout */
-          styles += "div.atq.triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0}";
-          styles += "div.atq.triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0}";
-          styles += "div.atq.triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px}";
-          styles += "div#atq.triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px}";
-          styles += "div#atq.triangle-border.top-right:before {top:-20px; bottom:auto; left:auto; right:40px; border-width:0 20px 20px}";
-          styles += "div#atq.triangle-border.top-right:after {top:-13px; bottom:auto; left:auto; right:47px; border-width:0 13px 13px}";
-        styles += "</style>";
+          atq_styles += "div.atq.triangle-border:before { content:''; position:absolute; bottom:-20px; left:40px; border-width: 20px 20px 0; border-style:solid; border-color: "+atqcolor+" transparent; display: block; width:0}";
+          atq_styles += "div.atq.triangle-border:after { content:''; position:absolute; bottom:-13px; left:47px; border-width:13px 13px 0; border-style:solid; border-color:"+atqcolor+" transparent; display:block; width:0}";
+          atq_styles += "div.atq.triangle-border.top:before {top:-20px; bottom:auto; left:auto; right:260px; border-width:0 20px 20px}";
+          atq_styles += "div#atq.triangle-border.top:after {top:-13px; bottom:auto; left:auto; right:267px; border-width:0 13px 13px}";
+          atq_styles += "div#atq.triangle-border.top-right:before {top:-20px; bottom:auto; left:auto; right:40px; border-width:0 20px 20px}";
+          atq_styles += "div#atq.triangle-border.top-right:after {top:-13px; bottom:auto; left:auto; right:47px; border-width:0 13px 13px}";
+        atq_styles += "</style>";
         $('.atq_styles').remove();
-        $('head').append(styles);
-
+        $('head').append(atq_styles);
+        
+        // build js
+        var atq_js = '<script>';
+        atq_js += 'function removeAtq(){'
+           atq_js += 'jQuery(\'.atq_highlight\').removeClass(\'atq_highlight\');'; 
+          //atq_js += ' document.getElementById("atq").className = document.getElementById("atq").className.replace(/\batq_highlight\b/,\'\');';
+          atq_js += ' document.getElementById("atq").remove();';
+        atq_js += '}';
+        atq_js += '</script>';
+        $('head').append(atq_js);
+        
         // add highlight to element
         $(target).addClass('atq_highlight');
-
+        
         // build html
         var atq = '';
-        atq += '<div class="atq-close" onclick="$(\'.atq_highlight\').removeClass(\'atq_highlight\'); $(\'#atq\').remove();">X</div>';
+        atq += '<div class="atq-close" onclick="removeAtq()">X</div>';
         atq += '<div class="atq_title"><em>Antiquated Inspector</em></div>';
         atq += '';
         atq += '<div><span class="atq_label">parent:</span> <b>'+elggparent+' '+elgparent+' '+elparent+'</b></div>';
@@ -202,7 +218,7 @@ function atq($){
           atq += '<div><span class="atq_label">bg&nbsp;image:</span> <b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></div>';
           atq += '<a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></div>';
         /* Add the inspector to the target */
-        $(target).parent().before('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
+        $(target).parent().prepend('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
         var winh = $(window).height();
         var winw = $(window).width();
@@ -232,28 +248,14 @@ function atq($){
 
       }
     });
-  
 
   $('*').keyup(function(e) {
     if (e.keyCode == 27) {
-      removeBorders();
+      removeAtq();
     }   // esc key pressed
   });
 
   $('#atq').blur(function(e) {
-    removeBorders();
+    removeAtq();
   });
-
-  function removeBorders(){
-    $('.atq_highlight').removeClass('atq_highlight');
-    $('#atq').remove();
-  }
-
-  function rgb2hex(rgb){
-   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-   return (rgb && rgb.length === 4) ? "#" +
-    ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-    ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
-  }
-});
+};
