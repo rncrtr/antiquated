@@ -12,31 +12,13 @@
         <p>Lorem loved ipsum.</p>
         <input type="text" /><br />
         <textarea name="" id="" cols="30" rows="10"></textarea><br />
-        <ul>
-            <li>Item 1</li>
-            <li><em>Item 2</em></li>
-        </ul>
+        <div class="li-gparent">
+          <ul class="li-parent">
+              <li>Item 1</li>
+              <li><em>Item 2</em></li>
+          </ul>
+        </div>
         <a href="http://google.com">Google Link</a>
-        <!-- Antiquated inspector include code -->
-        <script>
-            (function(doc, script) {
-              var js, 
-                  fjs = doc.getElementsByTagName(script)[0],
-                  frag = doc.createDocumentFragment(),
-                  add = function(url, id) {
-                      if (doc.getElementById(id)) {return;}
-                      js = doc.createElement(script);
-                      js.src = url;
-                      id && (js.id = id);
-                      frag.appendChild( js );
-                  };
-                  
-                // load antiquated script
-                add('antiquated.js');
-
-                fjs.insertBefore(frag, fjs.firstChild);
-            }(document, 'script'));
-        </script>
-        <!-- /Antiquated inspector include code -->
+      <script src="antiquated.js"></script>
     </body>
 </html>

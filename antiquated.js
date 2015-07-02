@@ -66,86 +66,38 @@ function atq($){
         /* TARGET Acquired Captain. */
         var target = e.target || e.srcElement;
         var elt = $(target)[0];
-       console.log($(target));
-        
-        /* Stalk the target a little */
-        var eltag = elt.tagName;
-        var elid = ($(target)[0].id) || '';
-        if(elid!=''){elid = '#'+elid;}
-        var elc = $(target).attr('class') || '';
-        elc = elc.split(' ');
-        var remove_item = function (arr, value) {
-          var b = '';
-          for (b in arr) {
-            if (arr[b] === value) {
-                arr.splice(b, 1);
-                break;
-            }
-          }
-          return arr;
-        }
-        remove_item(elc,'atq_highlight');
-        for (var i = elc.length - 1; i >= 0; i--) {
-          elc[i] = '.'+elc[i];
-        };
-        elc = elc.join(' ');
-        var eln = $(target)[0].name || '';
-
-        /* Stalk the target's family tree */
-        var elparent = $(target).parent();
-        elparent = elparent.attr('id') || '' + elparent.attr('class') || '';
-        elparent = elparent.split(' ');
-        for (var i = elparent.length - 1; i >= 0; i--) {
-          elparent[i] = '.'+elparent[i];
-        };
-        elparent = elparent.join(' ');
-        ///
-        var elgparent = $(target).parent().parent();
-        elgparent = '#'+elgparent.attr('id') || '.' + elgparent.attr('class') || '';
-        elgparent = elgparent.replace('#undefined','');
-        elgparent = elgparent.replace('.undefined','');
-        ///
-        var elggparent = $(target).parent().parent().parent();
-        elggparent = '#'+elggparent.attr('id') || '.' + elggparent.attr('class') || '';
-        elggparent = elggparent.replace('#undefined','');
-        elggparent = elggparent.replace('.undefined','');
-        ///
-        var elw = $(target)[0].offsetWidth;
-        ///
-        var elh = $(target)[0].offsetHeight;
-        ///
-        var elbgimg = $(target).css('background-image') || 'none';
-        elbgimg = elbgimg.replace('url("http://','');
-        elbgimg = elbgimg.replace('")','');
-        elbgimg = elbgimg.replace('url(http://','');
-        elbgimg = elbgimg.replace(')','');
-        elbgimg = elbgimg.replace(window.location.host,'');
-        ///
-        var elbg = $(target).css('background-color').toUpperCase() || 'none';
-        ///
-        var elclr = $(target).css('color').toUpperCase() || '';
-        ///
-        var elmargin = $(target).css('margin');
-        ///
-        var elpad = $(target).css('padding');
-        ///
-        var elbw = $(target).css('border-width');
-        ///
-        var elbs = $(target).css('border-style');
-        if(elbs=='none'){elbs = '';}
-        ///
-        var elbc = $(target).css('border-color');
-        if(elbw=='0px' || elbw==0){elbc = '';}
-        ///
-        var ellh = $(target).css('line-height') || '';
-        ///
-        var ells = $(target).css('letter-spacing') || 0;
-        ///
-        var eltop = $(target).offset().top;
-        ///
-        var elleft = $(target).offset().left;
-        ///
-        var elbot = eltop+elh+15;
+        console.log($(target));
+        var atq_props = {};
+        atq_props.tag = elt.tagName ? elt.tagName : '';
+        atq_props.id = elt.id ? '#'+elt.id : '';
+        atq_props.class = elt.className ? '.'+elt.className : '';
+        atq_props.class = atq_props.class.replace('atq_highlight','') ;
+        atq_props.name = elt.name ? elt.name : '';
+        atq_props.parent = elt.parentNode[0] ? elt.parentNode[0] : '';
+        atq_props.parent_id = $(atq_props.parent).attr('id') ? '#'+$(atq_props.parent).attr('id') : '';
+        atq_props.parent_class = $(atq_props.parent).attr('class') ? '.'+$(atq_props.parent).attr('class') : '';
+        atq_props.width = elt.offsetWidth;
+        atq_props.height = elt.offsetHeight;
+        atq_props.bgcolor = $(elt).css('background-color') ? $(elt).css('background-color').toUpperCase() : 'none';
+        atq_props.color = $(elt).css('color').toUpperCase() ? $(elt).css('color').toUpperCase() : '';
+        atq_props.margin = $(elt).css('margin');
+        atq_props.margin_top =$(elt).css('margin-top');
+        atq_props.margin_bottom = $(elt).css('margin-bottom');
+        atq_props.margin_left = $(elt).css('margin-left');
+        atq_props.margin_right = $(elt).css('margin-right');
+        atq_props.padding = $(elt).css('padding');
+        atq_props.padding_top = $(elt).css('padding-top');
+        atq_props.padding_bottom = $(elt).css('padding-bottom');
+        atq_props.padding_left = $(elt).css('padding-left');
+        atq_props.padding_right = $(elt).css('padding-right');
+        atq_props.border_width = $(elt).css('border-width') ? $(elt).css('border-width')  : '';
+        atq_props.border_style = $(elt).css('border-style') ? $(elt).css('border-style') : '';
+        atq_props.border_color = $(elt).css('border-color') ? $(elt).css('border-color') : '';
+        atq_props.line_height = $(elt).css('line-height') ? $(elt).css('line-height') : '';
+        atq_props.letter_spacing = $(elt).css('letter-spacing') ? $(elt).css('letter-spacing') : '';
+        atq_props.x = $(elt).offset().top ?  $(elt).offset().top : '';
+        atq_props.y = $(elt).offset().left ? $(elt).offset().left : '';
+        atq_props.bottom = atq_props.x+atq_props.height+15;
 
         /* Now we actually build the inspector display */
         // build styles
@@ -155,7 +107,7 @@ function atq($){
           /* tables */
           atq_styles += "div#atq table,#atq tbody,#atq tr,#atq td{font-size: 12px !important; padding: 0px !important; line-height: 18px !important; vertical-align: top !important; border-top: 0px !important; border: 0px}";
           /* container */
-          atq_styles += "div#atq{font-family: sans-serif !important; font-size: 14px; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+elbot+"px; left: "+elleft+"px}";
+          atq_styles += "div#atq{font-family: sans-serif !important; font-size: 14px; padding: 10px; background: "+atqcolor+"; text-align: left; color: #FFF; border-radius: 5px; position: fixed; z-index: 999; width: 300px; top: "+atq_props.bottom+"px; left: "+atq_props.y+"px}";
           /* title */
           atq_styles += 'div#atq .atq_title{margin-top: 0px; padding: 0px; color: #FFF; margin-top: 0px; margin-bottom: 10px; font-size: 16px}';
           /* close */
@@ -190,33 +142,32 @@ function atq($){
         atq += '<div class="atq-close" onclick="removeAtq()">X</div>';
         atq += '<div class="atq_title"><em>Antiquated Inspector</em></div>';
         atq += '';
-        atq += '<div><span class="atq_label">parent:</span> <b>'+elggparent+' '+elgparent+' '+elparent+'</b></div>';
-        atq += '<div><span class="atq_label">id/class:</span> <b>'+elid+' '+elc+'</b>';
-        atq += '<div><span class="atq_label">tag/name:</span> <b>&lt;'+eltag.toLowerCase()+'&gt; '+eln+'</b></div>';
+        atq += '<div><span class="atq_label">parent:</span> <b>'+atq_props.parent_id+'</b></div>';
+        atq += '<div><span class="atq_label">id/class:</span> <b>'+atq_props.id+' '+atq_props.class+'</b>';
+        atq += '<div><span class="atq_label">tag/name:</span> <b>&lt;'+atq_props.tag.toLowerCase()+'&gt; '+atq_props.name+'</b></div>';
 
           /* margin */
-          atq += '<div><span class="atq_label">margin:</span> <b>'+elmargin+'</b></div>';
+          atq += '<div><span class="atq_label">margin:</span> <b>'+parseInt(atq_props.margin)+'</b></div>';
           /* padding */
-          atq += '<div><span class="atq_label">padding:</span> <b>'+elpad+'</b></div>';
+          atq += '<div><span class="atq_label">padding:</span> <b>'+parseInt(atq_props.padding)+'</b></div>';
           /* border */
-          atq += '<div><span class="atq_label">border:</span> <b>'+elbw+' '+elbs+' <span style="background: '+rgb2hex(elbc)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;'+rgb2hex(elbc)+'</b></div>';
+          atq += '<div><span class="atq_label">border:</span> <b>'+atq_props.border_width+' '+atq_props.border_style+' <span style="background: '+rgb2hex(atq_props.border_color)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;'+rgb2hex(atq_props.border_color)+'</b></div>';
           /* line height */
-          atq += '<div><span class="atq_label">line-height:</span> <b>'+parseInt(ellh,10)+'px</b></div>';
+          atq += '<div><span class="atq_label">line-height:</span> <b>'+parseInt(atq_props.line_height,10)+'px</b></div>';
           /* letter spacing */
-          atq += '<div><span class="atq_label">letter-spacing:</span> <b>'+parseInt(ells,10)+'px</b></div>';
-        atq += '<div><span class="atq_label">width:</span> <b>'+elw+'px</b></div>';
-        atq += '<div><span class="atq_label">height:</span> <b>'+elh+'px</b></div>';
-        atq += '<div><span class="atq_label">x:</span> <b>'+parseInt(eltop,10)+'px</b></div>';
-        atq += '<div><span class="atq_label">y:</span> <b>'+parseInt(elleft,10)+'px</b></div>';
+          atq += '<div><span class="atq_label">letter-spacing:</span> <b>'+parseInt(atq_props.letter_spacing,10)+'px</b></div>';
+        atq += '<div><span class="atq_label">width:</span> <b>'+atq_props.width+'px</b></div>';
+        atq += '<div><span class="atq_label">height:</span> <b>'+atq_props.height+'px</b></div>';
+        atq += '<div><span class="atq_label">x:</span> <b>'+parseInt(atq_props.x)+'px</b></div>';
+        atq += '<div><span class="atq_label">y:</span> <b>'+parseInt(atq_props.y)+'px</b></div>';
         // divider
         atq += '<div style="width: 100%; border-bottom: 1px solid #ccc; margin-top: -10px; margin-bottom: 10px;">&nbsp;</div>';
             /* color */
-            atq += '<div><span class="atq_label">color:</span> <span style="background: '+rgb2hex(elclr)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elclr).toUpperCase()+'</b></div>';
+            atq += '<div><span class="atq_label">color:</span> <span style="background: '+rgb2hex(atq_props.color)+' !important; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(atq_props.color).toUpperCase()+'</b></div>';
             /* background color */
             atq += '<div><span class="atq_label">bg&nbsp;color: </span>';
-            atq += '<span style="background-color: '+rgb2hex(elbg)+' !important; margin-top: 2px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(elbg).toUpperCase()+'</b></div>';
-          atq += '<div><span class="atq_label">bg&nbsp;image:</span> <b><a style="color: #FFF; text-decoration: underline;" href="'+elbgimg+'" target="_blank">'+elbgimg+'</a></b></div>';
-          atq += '<a style="color: #FFF; font-weight: bold;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></div>';
+            atq += '<span style="background-color: '+rgb2hex(atq_props.bgcolor)+' !important; margin-top: 2px; width: 22px;">&nbsp;&nbsp;&nbsp;</span>&nbsp;<b>'+rgb2hex(atq_props.bgcolor).toUpperCase()+'</b></div>';
+          atq += '<a style="color: #FFF; font-weight: bold; width: 300px; text-align: right;" href="http://antiquated.in" target="_blank"><em>antiquated.in</em></a></div>';
         /* Add the inspector to the target */
         $(target).parent().prepend('<div id="atq" class="atq triangle-border top">'+atq+'</div>');
 
@@ -226,23 +177,23 @@ function atq($){
         var half_winw = winw/2;
 
         // if the target is huge, we just point to the top and stay on the interior for visibility
-        if(elh > half_winh){
-          $('#atq').css('top',eltop+40);
+        if(atq_props.height > half_winh){
+          $('#atq').css('top',atq_props.x+40);
           $('#atq').css('left','45%');
         }
 
         // flip to top of element, if below half way, so we can still see it for lower elements
         var atqh = $('#atq').height();
-        if(eltop > half_winh){
+        if(atq_props.x > half_winh){
           $('#atq').removeClass('top');
-          $('#atq').css('top',eltop-atqh-40);
+          $('#atq').css('top',atq_props.x-atqh-40);
           $('#atq').css('margin-left',50);
         }
         var atqw = $('#atq').width();
         // flip to other side if too far to the right
-        if(elleft > half_winw){
-          console.log(elleft+' ? '+half_winw);
-          $('#atq').css('left',elleft-atqw);
+        if(atq_props.y > half_winw){
+          console.log(atq_props.y+' ? '+half_winw);
+          $('#atq').css('left',atq_props.y-atqw);
 
         }
 
